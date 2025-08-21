@@ -1,0 +1,263 @@
+@use '../utils/var' as *;
+@use '../utils/function' as *;
+
+
+.sticky-breadcrumb{
+    will-change: auto;
+}
+.breadcrumb{
+    transition: all 0.5s;
+    position: absolute;
+    top: var(--header);
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #f1f6f9;
+    @include responsive(xl) {
+        top: var(--lg-header)
+    }
+    &--container{
+        width: 100%;
+        height: 6rem;
+        background-color: #f1f6f9;
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        @include responsive(lg) {
+            height: 4.5rem;
+        }
+    }
+    .fx{
+        //margin-right: 2.5rem;
+        a{
+            display: block;
+            width: 2.4rem;
+            height: 2.4rem;
+            background: url("../images/common/sub-home.png") no-repeat;
+        }
+        @include responsive(lg) {
+            display: none;
+        }
+    }
+    &--menu_drop{
+        position: relative;
+        height: 100%;
+        padding-right: 3.5rem;
+        padding-left: 2.5rem;
+
+        &::after{
+            content:"";
+            display: block;
+            position: absolute;
+            right: -1.5rem;
+            top: 50%;
+            width: .1rem;
+            height: 1.8rem;
+            background-color: #d8d8d8;
+            transform: translateY(-50%);
+        }
+        @include responsive(lg) {
+            width: 35%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .trigger{
+            position: relative;
+            padding-right: 5rem;
+            height: 100%;
+            span{
+                color: #0a529d;
+                font-size: 1.8rem;
+            }
+            &::after{
+                content:"";
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%) rotate(0deg);
+                transition: all 0.15s;
+                background: url("../images/common/breadcrumb-arw.png");
+                width: 8px;height: 5px;
+            }
+            @include responsive(lg) {
+                // padding-right: 2.5rem;
+                padding-right: 0;
+                padding-left: 1.5rem;
+                width: 100%;
+                display: block;
+                text-align: left;
+                position: relative;
+                &::after{
+                    right: 1rem;
+                }
+                span{
+                    font-size: 1.4rem;
+                }
+            }
+            &._open{
+                &::after{
+                    transform: translateY(-50%) rotate(180deg);
+                }
+                +.first-list{
+                    opacity: 1;
+                    visibility: visible;
+                    li{
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateY(0);
+                        transition: all 0.5s ease-in-out;
+                        @for $i from 1 through 6 {
+                            &:nth-child(#{$i}){
+                                transition-delay: $i * 0.15s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .first-list{
+            //display: none;
+            position: absolute;
+            left: 0;
+            top: calc(100% + .4rem);
+            right: 0;
+            border-radius: 1rem;
+            background-color: #0a529d;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s;
+            @include responsive(lg) {
+                left: .5rem;
+                right: .5rem;
+            }
+            li{
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(2.5rem);
+                
+                > a{
+                    display: block;
+                    color: #fff;
+                    font-size: 1.6rem;
+                    padding: 1rem 0 1rem 2.5rem;
+                    @include responsive(lg) {
+                        font-size: 1.3rem;
+
+                    }
+                }
+            }
+        }
+        
+    }
+    &--sub_list{
+        //margin-left: 3.5rem;
+        padding-left: 5rem;
+        border-left: 0;
+        height: 100%;
+        button{
+            display: none;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            font-size: 1.4rem;
+            padding-left: 4rem;
+            &::after{
+                content:"";
+                display: block;
+                position: absolute;
+                right: calc(1rem + 1.5rem);
+                top: 50%;
+                transform: translateY(-50%) rotate(0deg);
+                transition: all 0.15s;
+                background: url("../images/common/breadcrumb-arw-black.png");
+                width: 8px;height: 5px;
+            }
+            &._open{
+                &::after{
+                    transform: translateY(-50%) rotate(180deg);
+                }
+                +ul{
+                    opacity: 1;
+                    visibility: visible;
+                    li{
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateY(0);
+                        transition: all 0.35s ease-in-out;
+                        @for $i from 1 through 6 {
+                            &:nth-child(#{$i}){
+                                transition-delay: $i * 0.15s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @include responsive(lg) {
+            margin-left: 0;
+            padding-left: 0;
+            position: relative;
+            width: 65%;
+            button{
+                display: flex;
+                align-items: center;    
+            }
+        }
+        ul{
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: 0 5rem;
+            li{
+                a{
+                    color: #999;
+                }
+                &._current{
+                    a{
+                        color: #127ab7;
+                    }
+                }
+            }
+            @include responsive(lg) {
+                li._current{
+                    display: none;
+                }
+                display: block;
+                position: absolute;
+                left: 0;
+                top: calc(100% + .4rem);
+                right: 0;
+                border-radius: 1rem;
+                background-color: #0a529d;
+                padding: 1rem 0;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.25s;
+                height: auto;
+                @include responsive(lg) {
+                    left: .5rem;
+                    right: .5rem;
+                }
+                li{
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(2.5rem);
+                    
+                    > a{
+                        display: block;
+                        color: #fff;
+                        font-size: 1.6rem;
+                        padding: 1rem 0 1rem 2.5rem;
+                        @include responsive(lg) {
+                            font-size: 1.3rem;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
