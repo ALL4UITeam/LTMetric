@@ -194,7 +194,7 @@
                 </ul>
             </div>
         </aside>        <!-- s: contents -->
-        <div data-current="board" data-layout="sub">
+        <div data-current="board" data-layout="sub" id="contents">
 
             <div class="intro--banner board">
                 <div class="intro--banner_point">
@@ -208,13 +208,52 @@
                 <div class="intro--depth">
                     <div class="container">
                         <ul>
-                            <li><a class="active" href="">공지사항</a></li>
-                            <li><a href="">미디어</a></li>
+                            <li><a class="" href="">공지사항</a></li>
+                            <li><a class="active" href="">미디어</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <h2 class="page--title">공지사항</h2>
+            <h2 class="page--title">미디어</h2>
+            <div class="promotion__visual">
+                <div class="container">
+                    <div class="promotion__visual--player">
+                        <div class="thumb">
+                            <img src="./assets/images/board-player.png" alt="">
+                            <button type="button" class="promotion__visual--player-button" id="promotionPlay"><i class="sr-only">재생</i></button>
+                        </div>
+                        <div class="desc">
+                            <div class="cate">보도자료</div>
+                            <div class="titles">엘티메트릭, 라이카 컨트리맵퍼 항공 측량 시스템 구매…아태 지역 최초</div>
+                            <div class="date">2024. 03. 28</div>
+                        </div>
+                        
+                    </div>
+                    <div class="News__stand">
+                        <h3>+ 뉴스 스탠드</h3>
+                        <ul>
+                            <li class="News__stand--item">
+                                <a href="#">
+                                    <div class="News__stand--source">머니투데이</div>
+                                    <div class="News__stand--ti">"꿈꾸는 모든 것을 공간정보 위로" 강인구 엘티메트릭 대표의 포부</div>
+                                </a>
+                            </li>
+                            <li class="News__stand--item">
+                                <a href="#">
+                                    <div class="News__stand--source">머니투데이</div>
+                                    <div class="News__stand--ti">"꿈꾸는 모든 것을 공간정보 위로" 강인구 엘티메트릭 대표의 포부</div>
+                                </a>
+                            </li>
+                            <li class="News__stand--item">
+                                <a href="#">
+                                    <div class="News__stand--source">머니투데이</div>
+                                    <div class="News__stand--ti">"꿈꾸는 모든 것을 공간정보 위로" 강인구 엘티메트릭 대표의 포부</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="board board--list container">
                 <div class="board--search">
                     <form id="fn">
@@ -229,8 +268,8 @@
                 </div>
                 <div class="board--total">총 게시글 <b>16</b>건</div>
                 <div class="board--gall">
-                    <div class="board--gall__item">
-                        <a href="">
+                    <div class="board--gall__item" onclick="ModalHandler.open('PlayerModal')">
+                        <a href="#">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -242,7 +281,7 @@
                         </a>
                     </div>
                     <div class="board--gall__item">
-                        <a href="">
+                        <a href="#">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -254,7 +293,7 @@
                         </a>
                     </div>
                     <div class="board--gall__item">
-                        <a href="">
+                        <a href="#">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -266,7 +305,7 @@
                         </a>
                     </div>
                     <div class="board--gall__item">
-                        <a href="">
+                        <a href="#">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -278,7 +317,7 @@
                         </a>
                     </div>
                     <div class="board--gall__item">
-                        <a href="">
+                        <a href="#">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -290,7 +329,7 @@
                         </a>
                     </div>
                     <div class="board--gall__item">
-                        <a href="">
+                        <a href="#">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -325,7 +364,19 @@
         </div>
         <!-- e: contents -->
     </div>
-    
+    <div id="PlayerModal" data-modal="media">
+        <div class="player-content">
+            <header>
+                <h2 class="video-title">엘티메트릭, 라이카 컨트리맵퍼 항공 측량 시스템 구매…아태 지역 최초</h2>
+                <button class="close modal__close">
+                    <span></span>
+                </button>
+            </header>
+            <div class="line-box"><div class="iframe-zone"><iframe src="https://www.youtube.com/embed/y5aVxTpP_8w?autoplay=1" title="인도네시아 홍수 예측 및 경보 시스템" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></div></div>
+            <div class="video-con"><p><span style="font-size: 12px;">엘티메트릭, 라이카 컨트리맵퍼 항공 측량 시스템 구매…아태 지역 최초</span></p></div>
+        </div>
+        <div class="black-bg"></div>
+    </div>
     <footer class="footer">
         <div class="footer--inner">
         <div class="gutter-xxl">
@@ -399,5 +450,28 @@
     <button type="button" id="btnTop" title="맨 위로"><i></i></button>
     
     
-    <script src="./js/modal.js"></script>
+    <script src="./js/modal.js"></script>    <script>
+        document.getElementById('promotionPlay').addEventListener('click', function() {
+            // iframe 요소 생성
+            var iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/y5aVxTpP_8w?autoplay=1';
+            iframe.title = '엘티메트릭, 라이카 컨트리맵퍼 항공 측량 시스템 구매…아태 지역 최초';
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+
+            // iframe 로딩 완료 이벤트 핸들러
+            iframe.onload = function() {
+                console.log('로드 완료');
+                document.querySelector('.promotion__visual--player').classList.add('play')
+            };
+
+            // iframe을 원하는 위치에 삽입
+            var container = document.querySelector('.promotion__visual--player');
+            container.innerHTML = ''; // 기존 내용을 지우고
+            container.appendChild(iframe); // iframe 삽입
+        });
+    </script>
+
 </body></html>
