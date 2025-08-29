@@ -6,8 +6,6 @@ import handlebars from 'vite-plugin-handlebars'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const projectName = 'vite-full-template'
-
   const basePath = './'
 
   const pagesPath = path.resolve(__dirname, 'src')
@@ -63,11 +61,11 @@ export default defineConfig(({ mode }) => {
               return 'assets/images/[name][extname]'
             }
             return 'assets/[name][extname]'
-          }
-        },
-        manualChunks(id) {
-          if (id.includes('/src/js/common/')) {
-            return 'common'
+          },
+          manualChunks(id) {
+            if (id.includes('/src/js/common/')) {
+              return 'common'
+            }
           }
         }
       }
@@ -109,6 +107,11 @@ export default defineConfig(({ mode }) => {
         name: 'cleanup-html',
         closeBundle() {
           const distPath = path.resolve(__dirname, 'dist')
+          if (!fs.existsSync(distPath)) {
+            console.warn('⚠️ dist 폴더가 존재하지 않아 cleanup-html을 생략합니다.')
+            return
+          }
+
           const htmlFiles = fs.readdirSync(distPath).filter(f => f.endsWith('.html'))
 
           htmlFiles.forEach(file => {

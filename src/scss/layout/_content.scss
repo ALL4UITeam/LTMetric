@@ -2,55 +2,31 @@
 @use '../utils/function' as *;
 @use 'sass:map';
 @use 'sass:math';
-[data-layout="sub"]{
-    padding-top: 23rem;
+[data-layout=sub] {
     padding-bottom: 23rem;
     display: block;
-    @include responsive(xl){
-        padding-top: 18rem;
-        padding-bottom: 18rem;
-    }
     @include responsive(lg){
-        padding-top: 15rem;
-        padding-bottom: 13rem;
-    }
-    &:has(.board--view){
-        padding-top: 16rem;
-        .intro--banner{
-            display: none;
-        }
+        padding-bottom: 15rem;
     }
 }
-/*
-body{
-    &:has(.header.hide, .header.up){
-        &:not(:has(.promotion , .press)){
-            .intro--banner{
-                &_title{
-                    margin-top: 17rem;
-                }
-            }
-        }
-    }
-   &:has(.header.up){
-        .intro--banner{
-            &_title{
-                margin-top: 1.6rem;
-            }
-        }
-    }
-}*/
+.sr-only {display: none;}
+
 .intro--banner{
-    position: relative;
-    margin-bottom: 15rem;
-    max-width:var(--xl);
-    margin-left: auto;
-    margin-right: auto;
-    @include responsive(lg){
-        margin-bottom: 10rem;
+    height: 100vh;
+    background-color: transparent;
+    background-position: center;
+    background-size: cover;
+    &.board{
+        background-image: url("@/assets/images/press_visual.png");
     }
-    @include responsive(md){
-        margin-bottom: 7rem;
+    &.company{
+        background-image: url("@/assets/images/company_visual.png");
+    }
+    &.recruitment{
+        background-image: url("@/assets/images/recruitment_visual.png");
+    }
+    &.recruitboard{
+        background-image: url("@/assets/images/recruitboard_visual.png");
     }
     &_title{
         position: fixed;
@@ -76,85 +52,110 @@ body{
         }
         h2,p{
             transition: color 0.25s;
+            text-align: center;
         }
         h2{
-            font-weight: 400;
+            font-family: 'play';
+            font-weight: bold;
             color: #127ab7;
-            font-size: 2.4rem;
+            font-size: 10rem;
             padding-bottom: 1rem;
+            text-transform: uppercase;
         }
         p{
             color: #000;
-            font-weight: 700;
-            font-size: 4.8rem;
+            font-weight: normal;
+            font-size: 2.1rem;
             line-height: 1.34;
         }
         @include responsive(lg){
             h2{
-                font-size: clamp(1.4rem, 2.4vw, 2rem);
+                font-size: clamp(5rem, 2.4vw, 10rem);
                 padding-bottom: 1.5rem;
             }
             p{
-                font-size: clamp(1.9rem, 3.8vw, 4rem);
+                font-size: clamp(1.5rem, 1.8vw, 2.1rem);
             }
         }
     }
-    &-wrap{
-        position: relative;
+    .intro--depth{
+        position: absolute;
+        bottom: 0;
+        left: 0;
         width: 100%;
-    }
-    &_bg{
-        position: relative;
-        height: 50rem;
-        margin-top: 23rem;
-        @include responsive(xl){
-            margin-top: 28rem;
-            margin-left: 15px;
-            margin-right: 15px;
+        overflow-y: auto;
+        .container{
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid rgba(255,255,255,0.5);
         }
-        @include responsive(lg){
-            height: 40rem;
-            margin-top: 15rem;
-        }
-        @include responsive(md){
-            height: 35rem;
-            margin-top: 10rem;
-            //margin-top: 15rem;
-        }
-        
-        .intro--visual{
-            overflow: hidden;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            min-width: 100%;
-            width: 1440px;
-            transform: translateX(-50%);
-            height: 100%;
-            border-radius: 20px;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
+        ul {
+            display: inline-flex;
+            li {
+                a {
+                    position: relative;
+                    display: block;
+                    color: #c6c6c6;
+                    font-size: 2.1rem;
+                    padding: 5rem 4rem;
+                    transition: all .3s;
+                    @include responsive(lg){
+                        font-size: 1.6rem;
+                        padding: 4rem 3rem;
+                    }
+                    @include responsive(md){
+                        font-size: 1.2rem;
+                        padding: 2.5rem 1rem;
+                        text-align: center;
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        transition: all .3s;
+                        width: 0;
+                        height: 3px;
+                        background: #fff;
+                    }
+                    &.active {
+                        color: #fff;
 
-            @include responsive(xl){
+                        &:after {
+                            width: 100%;
+                        }
+                    }
+                    &:hover:not(.active) {
+                        color: #fff;
+
+                        &:after {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                a.active:after {
+                    width: 0;
+                }
+            }
+            li a.active:hover:after {
                 width: 100%;
             }
         }
-        &.__business{
-            background-image: url("../images/business/bg.png");
-        }
-        &::after{
-            content:"";
-            display: block;
-            position: absolute;
-            left: 0;top: 0;
-            width: 100%;height: 100%;
-            background: #000;
-            opacity: 0;
-            display: none;
-        }
-        @include responsive2(xxl) {
-            min-width: map.get($container-max-widths,xl);
-        }
-    }   
+    }
 }
+.page--title{
+    text-align: center;
+    font-size: 6.4rem;
+    padding: 12rem 0;
+    @include responsive(lg){
+        font-size: 4.8rem;
+        padding: 8rem 0;
+    }
+    @include responsive(md){
+        font-size: 3.6rem;
+        padding: 6rem 0;
+    }
+}
+

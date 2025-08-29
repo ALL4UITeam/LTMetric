@@ -1,5 +1,5 @@
 {
-  "name": "LTMetric",
+  "name": "ltmetric",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -12,5 +12,9 @@
     "vite-plugin-handlebars": "^2.0.0",
     "sass": "^1.70.0",
     "gh-pages": "^6.0.0"
-  }
+  },
+  "description": "✅ **프로젝트 구조**\r - `src/`: 소스 코드 (html, scss, js, partials)\r - `public/`: 정적 자산 (favicon, 외부 라이브러리 등)\r - `dist/`: 빌드 결과물",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

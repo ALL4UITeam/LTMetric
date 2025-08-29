@@ -27,7 +27,7 @@ body{-webkit-font-smoothing: antialiased;}
             height: 50px;
         }
         .brand{
-            @include sizes(156,42);
+            @include sizes(150,25);
             background-size: auto 100%;
             transition: background 0.25s cubic-bezier(0.77, 0, 0.175, 1) 0.2s;
         }
@@ -49,7 +49,7 @@ body{-webkit-font-smoothing: antialiased;}
                         font-weight: 700;
                     }
                     i{
-                        background: url("../images/common/mobile-utils-lang.png") no-repeat 0 0;
+                        background: url("@/assets/images/common/mobile-utils-lang.png") no-repeat 0 0;
                         @include sizes(33,33);
                         background-size: 100% auto;
                     }
@@ -66,7 +66,7 @@ body{-webkit-font-smoothing: antialiased;}
             //.header{
                 .brand{
                     transition: background 0.25s cubic-bezier(0.77, 0, 0.175, 1) 0.6s;
-                    background-image: url("../images/common/logo-blue.png");
+                    background-image: url("@/assets/images/common/logo-black.png");
                 }
                 .util{
                     .lang{
@@ -162,7 +162,7 @@ body{-webkit-font-smoothing: antialiased;}
                 display: block;
                 width: 12px;
                 height: 6px;
-                background: url("../images/common/mobile-gnb-arrow.png");
+                background: url("@/assets/images/common/mobile-gnb-arrow.png");
                 background-size: auto 100%;
                 transform: rotate(180deg);
                 transition: all 0.15s;

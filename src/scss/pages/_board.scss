@@ -1,23 +1,6 @@
 @use '../utils/var' as *;
 @use '../utils/function' as *;
 
-body:has(.press){
-    .intro--banner_bg{
-        @include responsive(md){
-            height: auto;
-        }
-    }
-    .intro--banner_bg .intro--visual{
-        @include responsive(md){
-            height: auto;
-            position: relative;
-            left: 0;
-            transform: translateX(0);
-        }
-    }
-}
-
-
 .press ._board{
     overflow: hidden;
     border-radius: 2rem;
@@ -186,26 +169,39 @@ body:has(.press){
 
 .board{
     &--paging{
-        padding-top: 16rem;
+        padding-top: 8rem;
         @include responsive(xl){
-            padding-top: 12rem;
+            padding-top: 6rem;
         }
         @include responsive(lg){
-            padding-top: 10rem;
+            padding-top: 4rem;
         }
         @include responsive(md){
-            padding-top: 7rem;
+            padding-top: 4rem;
         }
     }
     &--search{
-        background-color: #f8f8f8;
-        border-radius: 10px;
+        
         display: flex;
         justify-content: center;
         padding: 2rem 0;
         margin-bottom: 6rem;
         @include responsive(lg){
             margin-bottom: 4rem;
+        }
+        select{
+            width: 280px;
+            max-height: 60px;
+            padding: 1.8rem 3rem;
+            font-size: 1.9rem;
+            border-radius: 2.8rem;
+            border: 1px solid #cccccc;
+            background: #f5f5f5;
+            color:#1d1d1d;
+            appearance: none; /* 기본 브라우저 화살표 제거 */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #f6f6f6 url("@/assets/images/board/select-arrow.png") no-repeat right 2rem center;                
         }
         form{
             width: 100%;
@@ -216,19 +212,27 @@ body:has(.press){
             display: flex;
             align-items: center;
             margin: 0 auto;
+            gap: 2rem;
             label{
                 font-size: 1.9rem;
-                color: #2d2d2d;
+                color: #1d1d1d;
                 width: 7rem;
             }
             input[type="text"]{
                 display: block;
                 border-radius: 0.5rem;
-                border: 1px solid #8e8e8e;
+                border: 1px solid #cccccc;
                 width: calc(100% - 7rem);
                 height: 6rem;
+                color:#1d1d1d;
                 padding-left: 2rem;
                 padding-right: 6rem;
+                background: #f5f5f5;
+                border-radius: 2.8rem;
+                &::placeholder{
+                    color:#8e8e8e;
+                    font-size: 1.9rem;
+                }
             }
             button{
                 position: absolute;
@@ -240,14 +244,21 @@ body:has(.press){
                 align-items: center;
                 justify-content: center;
                 i{
-                    width: 2.6rem;
-                    height: 2.6rem;
-                    @include set-background('../images/board/icon-search.png');
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    @include set-background('@/assets/images/board/icon-search.png');
                 }
             }
             @include responsive(lg){
                 //width: min(100%, 80rem);w
                 width: min(100% , 80vw);
+                gap:1rem;
+                select{
+                    width: 120px;
+                    height: 4.2rem;
+                    font-size: 1.4rem;
+                    padding: 1rem 2rem;
+                }
                 label{
                     font-size: 1.3rem;
                     width: 5rem;
@@ -257,6 +268,9 @@ body:has(.press){
                     height: 4.2rem;
                     font-size: 1.4rem;
                     padding-right: 4rem;
+                    &::placeholder{
+                        font-size: 1.4rem;
+                    }
                 }
                 button{
                     width: 4rem;
@@ -270,7 +284,7 @@ body:has(.press){
         }
     }
     &--total{
-        font-weight: 700;
+        font-weight: 500;
         color: #2d2d2d;
         font-size: 2.1rem;
         margin-bottom: 2.5rem;
@@ -308,35 +322,46 @@ body:has(.press){
         &__item{
             > a{
                 display: block;
+                border: 1px solid #cccccc;
+                border-radius: 1.2rem;
                 &:hover,
                 &:focus{
                     img{
-                        transform: translate(-50%,-50%) scale(1.125);
+                        transform: scale(1.125);
                     }
                 }
             }
         }
         &__thumb{
             overflow: hidden;
-            border-radius: 1.5rem;
+            border-radius: 1.2rem;
             background-color: #f0f0f0;
             position: relative;
             padding-bottom: 56.25%;
             overflow: hidden;
-            @include set-background('../images/board/noimage.png','auto',50% 50%);
+            @include set-background('@/assets/images/board/noimage.png',auto ,50% 50%);
             img{
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%,-50%) scale(1);
+                left: 0%;
+                top: 0%;
+                transform: scale(1);
                 display: block;
                 transition: all 5s;
             }
         }
         &__info{
-            padding-top: 2.7rem;
+            padding: 4rem 3rem;
             @include responsive(lg){
-                padding-top: 2rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+        &__cate{
+            color:#077bb6;
+            margin-bottom: 2rem;
+            font-size: 1.7rem;
+            @include responsive(lg){
+                margin-bottom: 1rem;
+                font-size: 1.4rem;
             }
         }
         &__title{
@@ -347,7 +372,7 @@ body:has(.press){
             -webkit-line-clamp: 2;
             overflow: hidden;
             text-overflow: ellipsis;
-            line-height: 1.5; // 각 줄의 높이 설정
+            line-height: 1.3; // 각 줄의 높이 설정
             height: 7.8rem;
             font-size: 2.5rem;
             @include responsive(xl){
@@ -421,24 +446,25 @@ body:has(.press){
     //@include set-background('../images/board/bg-view-top.png' , auto , right top);
     &__top{
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         flex-direction: column;
         justify-content: space-between;
-        height: 30rem;
+        gap:4rem;
         padding: 6.5rem 0 6rem;
-        text-align: center;
-        border-bottom: 2px solid #000;
+        text-align: left;
+        border-bottom: 1px solid #c6c6c6;
+        border-top: 1px solid #c6c6c6;
         @include responsive(xl){
-            height: 25rem;
             padding: 5rem 0 4rem;
+            gap:3rem;
         }
         @include responsive(lg){
+            gap:2rem;
             border-bottom-width: 1px;
-            height: 20rem;
             padding: 4rem 0 3rem;
         }
         @include responsive(md){
-            height: 14rem;
+            gap:1rem;
             padding: 3rem 0 2.5rem;
         }
     }
@@ -451,6 +477,15 @@ body:has(.press){
             font-size: clamp(1.7rem, 3.33vw, 4rem);
         }
     }
+    &__cate{
+        font-size: 1.7rem;
+        color:#0a31a8;
+        font-weight: bold;
+        margin-right: 1rem;
+        @include responsive(xl){
+            font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+        }
+    }
     &__date{
         color: #717171;
         font-size: 1.7rem;
@@ -461,7 +496,9 @@ body:has(.press){
     &__content{
         color: #555555;
         line-height: 1.7;
-        padding: 10rem 0;
+        padding: 6rem 0;
+        margin-bottom: 6rem;
+        border-bottom: 1px solid #c6c6c6;
         p{
             font-size: 1.9rem;
             @include responsive(xl){
@@ -472,22 +509,34 @@ body:has(.press){
             }
         }
         @include responsive(xl){
-            padding: 8rem 0;
+            padding: 5rem 0;
+            margin-bottom: 5rem;
         }
         @include responsive(lg){
-            padding: 7rem 0;
+            padding: 4rem 0;
+            margin-bottom: 4rem;
         }
         @include responsive(md){
-            padding: 5rem 0;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
         }
     }
     &__files{
-        border: 1px solid #c6c6c6;
-        border-radius: 0.5rem;
-        padding: 2rem 3rem;
+        background: #f5f5f5;
+        border-radius: .8rem;
+        padding: 4rem;
+        h4{
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
         &__list{
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            padding: 1.5rem 2.3rem;
+            border-radius: .8rem;
             + * {
-                margin-top: 0.5rem;
+                margin-top: 1rem;
             }
             a{
                 display: inline-flex;
@@ -500,97 +549,29 @@ body:has(.press){
             }
         }
         @include responsive(xl){
+            h4{
+                font-size: 1.64em;
+                margin-bottom: 1.5rem;
+            }
             padding: 1.5rem 2rem;
             a{
                 font-size: 1.3rem;
             }
         }
         @include responsive(lg){
+            h4{
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
             padding: 1.2rem 1.5rem;
             a{
                 font-size: 1.2rem;
             }
         }
     }
-    &__navigation{
-        margin-top: 10rem;
-        @include responsive(xl){
-            margin-top: 8rem;
-        }
-        @include responsive(lg){
-            margin-top: 6rem;
-        }
-        @include responsive(md){
-            margin-top: 5rem;
-        }
-        .item{
-            display: block;
-            border-top: 1px solid #ddd;
-            &:last-child{
-                border-bottom: 1px solid #ddd;
-            }
-            a{
-                display: grid;
-                align-items: center;
-                grid-template-columns: 20rem auto 20rem;
-                height: 100%;
-                width: 100%;
-                border-radius: 0.5rem;
-                padding: 4rem 0;
-                @include responsive(xl){
-                    padding: 3rem 0;
-                    grid-template-columns: 15rem auto 15rem;
-                }
-                @include responsive(lg){
-                    grid-template-columns: 10rem auto 10rem;
-                }
-                @include responsive(md){
-                    grid-template-columns: 5rem auto 7rem;
-                }
-                .cate{
-                    text-align: center;
-                    color: #555555;
-                    font-size: 1.5rem;
-                    @include responsive(xl){
-                        font-size: 1.3rem;
-                    }
-                    @include responsive(md){
-                        font-size: 1.2rem;
-                    }
-                }
-                .subject{
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    color: #2d2d2d;
-                    font-size: 2.5rem;
-                    @include responsive(xl){
-                        font-size: 2rem;
-                    }
-                    @include responsive(lg){
-                        font-size: 1.8rem;
-                    }
-                    @include responsive(md){
-                        font-size: 1.4rem;
-                    }
-                }
-                .date{
-                    text-align: center;
-                    color: #555555;
-                    font-size: 1.5rem;
-                    @include responsive(xl){
-                        font-size: 1.3rem;
-                    }
-                    @include responsive(md){
-                        font-size: 1.2rem;
-                    }
-                }
-            }
-        }
-    }
     &__back{
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         padding-top: 6rem;
         @include responsive(xl){
             padding-top: 5rem;
@@ -605,7 +586,7 @@ body:has(.press){
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 10.5rem;
+            width: 8rem;
             height: 6rem;
             border-radius: 0.5rem;
             font-size: 1.9rem;
@@ -642,11 +623,29 @@ body:has(.press){
 }
 
 .promotion{
-
     &__visual{
+        padding: 6rem;
+        margin-bottom: 10rem;
+        background: #f5f5f5;    
+        @include responsive(lg){
+            padding: 0;
+            margin-bottom: 5rem;
+        }
+
+        .container{
+            display: flex;
+            gap:3rem;
+            @include responsive(lg){
+                flex-direction: column;
+            }
+            @include responsive(md){
+                gap:1.5rem
+            }
+        }
         &--player{
+            flex:1;
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 36.9%;
             background: #000;
             overflow: hidden;
             border-radius: 2rem;
@@ -673,19 +672,34 @@ body:has(.press){
                     height: 100%;
                     object-fit: cover;
                 }
+                &::after{
+                    content:"";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 2;
+                    background: linear-gradient(to top, 
+                                            rgba(0, 0, 0, 1) 0%, 
+                                            rgba(0, 0, 0, 0.9) 6.25%, 
+                                            rgba(0, 0, 0, 0.6) 30%, 
+                                            rgba(0, 0, 0, 0.1) 100%);
+                }
             }
             &-button{
                 position: absolute;
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%);
-                width: 25rem;
-                height: 25rem;
+                width: 7.2rem;
+                height: 7.2rem;
                 z-index: 3;
-                @include set-background('../images/board/icon-play.png');
+                @include set-background('@/assets/images/board/icon-play.png');
                 @include responsive(lg){
-                    width: 12.5rem;
-                    height: 12.5rem;
+                    width: 3.5rem;
+                    height: 3.5rem;
                     background-size: cover;
                 }
                 @include responsive(md){
@@ -693,41 +707,38 @@ body:has(.press){
                     height: 6rem;
                 }
             }
-            &::after{
-                content:"";
-                display: block;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 2;
-                background: linear-gradient(to top, 
-                                        rgba(0, 0, 0, 1) 0%, 
-                                        rgba(0, 0, 0, 0.9) 6.25%, 
-                                        rgba(0, 0, 0, 0.6) 30%, 
-                                        rgba(0, 0, 0, 0.1) 100%);
-            }
+            
             .desc{
                 position: absolute;
                 z-index: 3;
                 bottom: 6.25%;
                 left: 0;
                 right: 0;
-                text-align: center;
+                text-align: left;
+                padding: 0 3.5rem;
+                .cate{
+                    color: #fff;
+                    font-size: 1.7rem;
+                    margin-bottom: 2.4rem;
+                }
                 .titles{
                     color: #fff;
                     font-weight: 700;
-                    font-size: 4rem;
+                    font-size: 2.5rem;
                 }
                 .date{
                     color: #fff;
-                    font-size: 1.7rem;
+                    font-size: 1.5rem;
                     margin-top: 2.4rem;
                 }
                 @include responsive(md){
+                    padding: 0 1.5rem;
+                    .cate{
+                        font-size: 1.4rem;
+                        margin-top: 1rem;
+                    }
                     .titles{
-                        font-size: 2.2rem;
+                        font-size: 1.5rem;
                     }
                     .date{
                         font-size: 1.3rem;
@@ -742,6 +753,61 @@ body:has(.press){
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%);
+            }
+        }
+        .News__stand{
+            width: 45rem;
+            padding: 4rem 3.8rem;
+            background: #fff;
+            border-radius: 1.2rem;
+            border: 1px solid #077bb6;
+            h3{
+                font-size: 2.5rem;
+                color:#077bb6;
+            }
+            &--item{
+                padding: 4rem 0 2rem;
+                &+li{
+                    border-top: 1px solid #e2e2e2;
+                }
+            }
+            &--source{
+                font-size: 1.7rem;
+                color:#717171;
+            }
+            &--ti{
+                margin-top: 1.8rem;
+                font-size: 1.9rem;
+                color:#1d1d1d;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                font-weight: bold;
+            }
+            @include responsive(lg){
+                width: 100%;
+            }
+            @include responsive(md){
+                padding: 2rem;
+                h3{
+                    font-size: 1.5rem;
+                }
+                &--item{
+                    padding: 2rem 0 1rem;
+                }
+                &--source{
+                    font-size: 1.3rem;
+                    color:#717171;
+                }
+                &--ti{
+                    margin-top: 1rem;
+                    font-size: 1.4rem;
+                    color:#1d1d1d;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    font-weight: bold;
+                }
             }
         }
     }
