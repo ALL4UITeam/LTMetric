@@ -198,6 +198,7 @@
         <div data-current="company" data-layout="sub" class="ci">
 
             <div class="intro--banner company">
+                <div class="intro--banner-background"></div>
                 <div class="intro--banner_point">
                     <div class="intro--banner_title">
                         <div class="container">
@@ -223,65 +224,65 @@
             
             <div class="container">
                 <dl class="ci__item">
-                    <dt>
+                    <dt class="animate-text">
                         Symbol
                     </dt>
                     <dd>
-                        <p class="txt01">
+                        <p class="txt01 animate-text">
                             푸른 도시의 심장과 초록 자연의 품이 어우러진 배경 위에, <br>계획성의 선들이 조화롭게 더해져 공간과 인간이 이루는 아름다운 균형을 시각화합니다
                         </p>
                         <div class="box symbol">
-                    <img src="./assets/images/ci-symbol.png" alt="LT 심볼">
+                    <img class="animate-image" src="./assets/images/ci-symbol.png" alt="LT 심볼">
                 </div>
                     </dd>
                 </dl>
                 
                 <dl class="ci__item">
-                    <dt>
+                    <dt class="animate-text">
                         Signature
                     </dt>
                     <dd>
-                        <p class="txt01 mb25">
+                        <p class="txt01 mb25 animate-text">
                             엘티메트릭의 CI는 변화를 선도하는 핵심가치와 데이터를 통한 가치 창출에 대한 아이덴티티를 담았습니다.
                         </p>
-                        <p class="txt02">
+                        <p class="txt02 animate-text">
                             - 시그니처는 심벌마크와 로고타입을 적절한 비례로 조합한 것이다<br>
                             - 적용 상황에 맞는 조합을 선택, 활용할 수 있다<br>
                             - 모든 원고의 사용은 매뉴얼의 컴퓨터 데이터에 의해 확대, 축소하여 사용하는 것을 원칙으로 한다
                         </p>
                         <div class="box signature">
-                            <img src="./assets/images/ci-ko.png" alt="LT 국문 CI">
-                            <img src="./assets/images/ci-en.png" alt="LT 영문 CI">
+                            <img class="animate-image" src="./assets/images/ci-ko.png" alt="LT 국문 CI">
+                            <img class="animate-image" src="./assets/images/ci-en.png" alt="LT 영문 CI">
                         </div>
                     </dd>
                 </dl>
                 
 
                 <dl class="ci__item">
-                    <dt>
+                    <dt class="animate-text">
                         Colors
                     </dt>
                     <dd>
                         <div class="ci__item--colors">
-                            <dl class="ci__item--colors--blue">
-                                <dt>LTMETRIC Blue</dt>
-                                <dd>
+                            <dl class="ci__item--colors--blue animate-item">
+                                <dt class="animate-text">LTMETRIC Blue</dt>
+                                <dd class="animate-text">
                                     <div>CMYK : 86. 45. 7.0</div>
                                     <div>RGB : 4. 123. 182</div>
                                     <div>HEX : #047bb6</div>
                                 </dd>
                             </dl>
-                            <dl class="ci__item--colors--green">
-                                <dt>LTMETRIC Green</dt>
-                                <dd>
+                            <dl class="ci__item--colors--green animate-item">
+                                <dt class="animate-text">LTMETRIC Green</dt>
+                                <dd class="animate-text">
                                     <div>CMYK : 52. 9. 100. 0</div>
                                     <div>RGB : 137. 182. 64</div>
                                     <div>HEX : #89b640</div>
                                 </dd>
                             </dl>
-                            <dl class="ci__item--colors--gray">
-                                <dt>LTMETRIC Gray</dt>
-                                <dd>
+                            <dl class="ci__item--colors--gray animate-item">
+                                <dt class="animate-text">LTMETRIC Gray</dt>
+                                <dd class="animate-text">
                                     <div>CMYK : 52. 9. 100. 0</div>
                                     <div>RGB : 77. 77. 79</div>
                                     <div>HEX : #89b640</div>
@@ -371,5 +372,159 @@
     <button type="button" id="btnTop" title="맨 위로"><i></i></button>
     
     
-    <script src="./js/modal.js"></script>
+    <script src="./js/modal.js"></script>
+    
+    <script>
+        if(document.querySelector('.page_title')){
+            const pageMainTitle = document.querySelector('.page_title');
+            const pageSubDesc = document.querySelector('.sub_title_desc');
+    
+            // 글자 span으로 감싸기
+            const text = pageMainTitle.textContent.trim();
+            pageMainTitle.textContent = ''; // 기존 텍스트 비움
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.display = 'inline-block';
+                span.style.transform = 'translateY(100%)'; // 초기 아래 위치
+                pageMainTitle.appendChild(span);
+            });
+    
+            // GSAP 타이틀 애니메이션
+            gsap.to(".page_title span", {
+                y: 0,
+                duration: 1.3,
+                stagger: 0.09,
+                ease: "power3.out",
+                onComplete: () => {
+                gsap.fromTo(pageSubDesc,
+                    { y: 0, opacity: 0, filter: "blur(10px)" },
+                    { y: 0, opacity: 1, duration: 1, ease: "power3.out", filter: "blur(0px)" }
+                );
+                }
+            });
+            gsap.fromTo(".intro--banner-background",
+                { clipPath: "circle(0% at 50% 50%)" },
+                { clipPath: "circle(150% at 50% 50%)", duration: 10, ease: "power3.out" }
+            );
+        }
+    </script>
+    
+    <!-- GSAP 애니메이션 스크립트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            gsap.set('.animate-text', { 
+                opacity: 0, 
+                y: 50
+            });
+            
+            gsap.set('.animate-image', { 
+                opacity: 0, 
+                scale: 0.8
+            });
+            
+            gsap.set('.animate-item', { 
+                opacity: 0, 
+                y: 30
+            });
+            
+            gsap.to('.page--title', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                delay: 0.3
+            });
+            
+            gsap.to('.ci__item:nth-child(1) .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ci__item:nth-child(1)',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.ci__item:nth-child(1) .animate-image', {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: '.ci__item:nth-child(1)',
+                    start: "top 70%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.ci__item:nth-child(2) .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ci__item:nth-child(2)',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.ci__item:nth-child(2) .animate-image', {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                stagger: 0.3,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: '.ci__item:nth-child(2)',
+                    start: "top 70%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.ci__item:nth-child(3) .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ci__item:nth-child(3)',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.animate-item', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.3,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ci__item--colors',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+        });
+    </script>
 </body></html>

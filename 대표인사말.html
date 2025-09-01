@@ -198,6 +198,7 @@
         <div data-current="company" data-layout="sub" class="ceo">
 
             <div class="intro--banner company">
+                <div class="intro--banner-background"></div>
                 <div class="intro--banner_point">
                     <div class="intro--banner_title">
                         <div class="container">
@@ -223,32 +224,32 @@
             
             <div class="ceo--narrative__top">
                 <div class="container">
-                    <p>Leading Transformation</p>
-                    <p>
+                    <p class="animate-text">Leading Transformation</p>
+                    <p class="animate-text">
                         공간정보 생산부터 서비스 제공까지의<br>전 과정을 하나로 연결합니다.
                     </p>
-                    <img src="./assets/images/ceo-kang.png" alt="ceo 사진">
+                    <img class="animate-image" src="./assets/images/ceo-kang.png" alt="ceo 사진">
                 </div>
             </div>
             <div class="ceo--narrative__txt01">
                 <div class="container">
-                    <p>
-                        엘티메트릭은 <span>공간정보서비스 Alliance</span>를 통해 기업 간 협력 플랫폼을 완성하고,<br>데이터 가치창출을 목표로 설립된 기업입니다.
+                    <p class="animate-text">
+                        엘티메트릭은 <span class="highlight-text">공간정보서비스 Alliance</span>를 통해 기업 간 협력 플랫폼을 완성하고,<br>데이터 가치창출을 목표로 설립된 기업입니다.
                     </p>
                 </div>
             </div>
             <div class="ceo--narrative__txt02">
                 <div class="container">
-                    <p>2019년 국내 최초로 하이브리드 항공센서를 도입하였고, 이를 통해 3차원 국토 구현, 디지털 트윈 분야를 선도하고 있습니다.<br>또한, 4차 산업혁명의 핵심기술인 드론, 빅데이터, 인공지능, 블록체인 분야에서 혁신 기술을 확보한 공간정보 전문 기업으로 거듭고 있습니다.</p>
-                    <p>이제부터는 일상생활 속에서 발생하는 모든 이슈, 관심, 행위를 공간정보로 표현하고, 분석하며 예측할 수 있도록 기술 개발에 매진할 계획입니다. </p>
-                    <p>국토정보플랫폼, 국가주소정보시스템, 통계지리정보서비스를 구축하고 운영하면서 쌓아온 노하우를 기반으로<br>국가 공간정보 유통의 중추를 담당하는 기업이 되겠습니다.</p>
+                    <p class="animate-text">2019년 국내 최초로 하이브리드 항공센서를 도입하였고, 이를 통해 3차원 국토 구현, 디지털 트윈 분야를 선도하고 있습니다.<br>또한, 4차 산업혁명의 핵심기술인 드론, 빅데이터, 인공지능, 블록체인 분야에서 혁신 기술을 확보한 공간정보 전문 기업으로 거듭고 있습니다.</p>
+                    <p class="animate-text">이제부터는 일상생활 속에서 발생하는 모든 이슈, 관심, 행위를 공간정보로 표현하고, 분석하며 예측할 수 있도록 기술 개발에 매진할 계획입니다. </p>
+                    <p class="animate-text">국토정보플랫폼, 국가주소정보시스템, 통계지리정보서비스를 구축하고 운영하면서 쌓아온 노하우를 기반으로<br>국가 공간정보 유통의 중추를 담당하는 기업이 되겠습니다.</p>
                 </div>
             </div>
             <div class="ceo--narrative__sign">
                 <div class="container">
-                    <span>대표</span>
-                    <strong>강인구</strong>
-                    <img src="./assets/images/ceo-sign.png" alt="ceo 싸인">
+                    <span class="animate-text">대표</span>
+                    <strong class="animate-text">강인구</strong>
+                    <img class="animate-sign" src="./assets/images/ceo-sign.png" alt="ceo 싸인">
                 </div>
             </div>
 
@@ -330,5 +331,195 @@
     <button type="button" id="btnTop" title="맨 위로"><i></i></button>
     
     
-    <script src="./js/modal.js"></script>
+    <script src="./js/modal.js"></script>
+    
+    <script>
+        if(document.querySelector('.page_title')){
+            const pageMainTitle = document.querySelector('.page_title');
+            const pageSubDesc = document.querySelector('.sub_title_desc');
+    
+            // 글자 span으로 감싸기
+            const text = pageMainTitle.textContent.trim();
+            pageMainTitle.textContent = ''; // 기존 텍스트 비움
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.display = 'inline-block';
+                span.style.transform = 'translateY(100%)'; // 초기 아래 위치
+                pageMainTitle.appendChild(span);
+            });
+    
+            // GSAP 타이틀 애니메이션
+            gsap.to(".page_title span", {
+                y: 0,
+                duration: 1.3,
+                stagger: 0.09,
+                ease: "power3.out",
+                onComplete: () => {
+                gsap.fromTo(pageSubDesc,
+                    { y: 0, opacity: 0, filter: "blur(10px)" },
+                    { y: 0, opacity: 1, duration: 1, ease: "power3.out", filter: "blur(0px)" }
+                );
+                }
+            });
+            gsap.fromTo(".intro--banner-background",
+                { clipPath: "circle(0% at 50% 50%)" },
+                { clipPath: "circle(150% at 50% 50%)", duration: 10, ease: "power3.out" }
+            );
+        }
+    </script>
+    
+    <!-- GSAP 애니메이션 스크립트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // GSAP 플러그인 등록
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // 페이지 로드 후 애니메이션 시작
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 초기 상태 설정 (애니메이션 시작 전 숨김)
+            gsap.set('.animate-text', { 
+                opacity: 0, 
+                y: 50,
+                duration: 0.8
+            });
+            
+            gsap.set('.animate-image', {
+                opacity: 0, 
+                scale: 0.8,
+                duration: 0.8
+            });
+            
+            gsap.set('.animate-sign', {
+                opacity: 0, 
+                x: -100,
+                duration: 0.8
+            });
+            
+            gsap.set('.highlight-text', {
+                opacity: 0, 
+                scale: 0.5,
+                duration: 0.6
+            });
+            
+            // 페이지 타이틀 애니메이션
+            gsap.to('.page--title', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                delay: 0.3
+            });
+            
+            // Leading Transformation 텍스트 애니메이션
+            gsap.to('.ceo--narrative__top .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.3,
+                ease: "power2.out",
+                delay: 0.5,
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__top',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // CEO 이미지 애니메이션
+            gsap.to('.animate-image', {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "back.out(1.7)",
+                delay: 1.2,
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__top',
+                    start: "top 70%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // 첫 번째 텍스트 섹션 애니메이션
+            gsap.to('.ceo--narrative__txt01 .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__txt01',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // 하이라이트 텍스트 애니메이션
+            gsap.to('.highlight-text', {
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+                delay: 0.5,
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__txt01',
+                    start: "top 70%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // 두 번째 텍스트 섹션 애니메이션 (순차적)
+            gsap.to('.ceo--narrative__txt02 .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.4,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__txt02',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // 서명 섹션 애니메이션
+            gsap.to('.ceo--narrative__sign .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__sign',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // 서명 이미지 애니메이션
+            gsap.to('.animate-sign', {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power2.out",
+                delay: 0.5,
+                scrollTrigger: {
+                    trigger: '.ceo--narrative__sign',
+                    start: "top 70%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            
+        });
+    </script>
 </body></html>
