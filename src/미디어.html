@@ -183,6 +183,22 @@
 	</div>
 
     <script>
+        document.getElementById('promotionPlay').addEventListener('click', function() {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/_vfWLaZKiRw?autoplay=1';
+            iframe.title = $('#thmbDtoTtl').val();
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+            iframe.onload = function() {
+                document.querySelector('.promotion__visual--player').classList.add('play')
+            };
+            var container = document.querySelector('.promotion__visual--player');
+            container.innerHTML = '';
+            container.appendChild(iframe);
+            this.classList.add('play');
+        });
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.getElementById('PlayerModal');
             const iframeZone = modal.querySelector('.iframe-zone');

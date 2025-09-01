@@ -466,9 +466,6 @@
 
 // 환경경영
 .esg--Environment{
-    .container{
-
-    }
     &__circle{
         background-image: url("@/assets/images/esg/Environment-bg.png");
         padding: 8rem 0 9.5rem;
@@ -490,7 +487,8 @@
         }
     }
     .circle--wrap{
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         li{
             width: 39rem;
             height: 39rem;
@@ -526,10 +524,38 @@
             }
         }
         @include responsive(lg){
-
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+            align-items: center;
+            gap:3rem;
+            li{
+                width: 30rem;
+                height: 30rem;
+                &+li{
+                    margin-left: 0rem;
+                }
+                span{
+                    font-size: 2.8rem;
+                }
+                p{
+                    font-size: 2.0rem;
+                }
+            }
         }
         @include responsive(md){
-            
+            li{
+                width: 20rem;
+                height: 20rem;
+                &+li{
+                    margin-left: 0rem;
+                }
+                span{
+                    font-size: 2.2rem;
+                }
+                p{
+                    font-size: 1.5rem;
+                }
+            }
         }
     }
     &__activity{
@@ -575,6 +601,518 @@
                         border-radius: 50% ;
                     }
                 }
+            }
+        }
+        @include responsive(lg){
+            .activity--box__wrap{
+                gap:2rem;
+            }
+            .activity--box{
+                padding: 2rem;
+                border-radius: 3rem;
+                img{
+                    margin-bottom: 2rem;
+                }
+                h4{
+                    font-size: 2.5rem;
+                    color:#1d1d1d;
+                    margin-bottom: 2rem;
+                }
+                ul{
+                    li{
+                        font-size: 2.1rem;
+                        padding-left: 15px;
+                        &:after{
+                            width: 6px;
+                            height: 6px;
+                        }
+                    }
+                }
+            }
+        }
+        @include responsive(md){
+            padding: 6rem 0;
+            .activity--box__wrap{
+                grid-template-columns: repeat(1, 1fr);
+                gap:1rem;
+            }
+            .activity--box{
+                border-radius: 3rem;
+                img{
+                    margin-bottom: 1rem;
+                }
+                h4{
+                    font-size: 1.8rem;
+                    color:#1d1d1d;
+                    margin-bottom: 1rem;
+                }
+                ul{
+                    li{
+                        font-size: 1.5rem;
+                        padding-left: 10px;
+                        &:after{
+                            width: 4px;
+                            height: 4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 인권경영
+.human--process{
+    margin-top: 8rem;
+    margin-bottom: 4rem;
+    background: #f3f3f3;
+    padding: 6rem 0;
+    .container{
+        display: flex;
+        justify-content: space-between;
+        gap:2rem;
+    }
+    &__wrap{
+        display: flex;
+        gap:3rem;
+    }
+    h4{
+        position: relative;
+        font-size: 3.2rem;
+        padding-left: 3rem;
+        &:after{
+            position: absolute;
+            left: 0;
+            top: 1.1rem;
+            display: block;
+            content: '';
+            background-image: url('@/assets/images/company/bullet-blue.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 1.7rem;
+            height: 1.7rem;
+        }
+    }
+    &__wrap{
+
+    }
+    &__item{
+        position: relative;
+        width: 21rem;
+        height: 15rem;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 1.2rem;
+        dt{
+            font-size: 1.5rem;
+            color:#077bb6;
+            margin-bottom: 3rem;
+        }
+        dd{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            p{
+                font-size: 1.9rem;
+                white-space: nowrap;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+@include responsive(lg){
+    .human--process{
+        margin-top: 6rem;
+        margin-bottom: 3rem;
+        background: #f3f3f3;
+        padding: 4.5rem 0;
+        .container{
+            flex-direction: column;
+        }
+        &__wrap{
+            justify-content: space-between;
+            gap:2rem;
+        }
+        h4{
+            font-size: 2.8rem;
+
+        }
+        &__item{
+            height: 12rem;
+            flex:1;
+            padding: 1rem;
+            dt{
+                font-size: 1.7rem;
+            }
+            dd{
+                p{
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
+@include responsive(md){
+    .human--process{
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        h4{
+            font-size: 1.8rem;
+            padding-left: 1.5rem;
+            &:after{
+                top:.5rem;
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+        &__wrap{
+            gap:1rem;
+        }
+        &__item{
+            height: 10rem;
+            flex:1;
+            padding: 1rem;
+            dt{
+                font-size: 1.3rem;
+            }
+            dd{
+                p{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+.human--txt{
+    border-top: 1px solid #1d1d1d;
+    &__item{
+        display: flex;
+        align-items: center;
+        gap:3rem;
+        padding: 4rem 0;
+        border-top: 1px solid #c6c6c6;
+        span{
+            width: 5%;
+            text-align: center;
+            font-size: 1.9rem;
+            margin-right: 5%;
+        }
+        strong{
+            width: 25%;
+            font-size: 2.5rem;
+        }
+        p{
+            width: 70%;
+            font-size: 1.7rem;
+            color:#555555;
+            line-height: 1.4;
+        }
+    }
+    @include responsive(lg){
+        &__item{
+            gap:2rem;
+            padding: 3rem 0;
+            span{
+                font-size: 1.5rem;
+            }
+            strong{
+                font-size: 2rem;
+            }
+            p{
+                font-size: 1.3rem;
+            }
+        }
+    }
+    @include responsive(md){
+        &__item{
+            gap:1rem;
+            padding: 2rem 0;
+            span{
+                font-size: 1.2rem;
+            }
+            strong{
+                font-size: 1.5rem;
+            }
+            p{
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+
+// ESG개요 
+.esg-manage{
+    ul{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:3rem;
+        margin-bottom: 12rem;
+        li{
+            display: flex;
+            flex-direction: column;
+            border-radius: 3rem;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid #c6c6c6;
+            i{
+                display: block;
+                padding-bottom: 4rem;
+                margin-bottom: 4rem;
+                border-bottom: 1px solid #c6c6c6;
+            }
+            strong{
+                display: block;
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            p{
+                font-size: 1.7rem;
+                color:#555;
+                line-height: 1.5;
+            }
+        }
+        @include responsive(lg){
+            margin-bottom: 8rem;
+            gap:2rem;
+            li{
+                padding: 2rem;
+                i{
+                    padding-bottom: 3rem;
+                    margin-bottom: 3rem;
+                }
+                strong{
+                    font-size: 2rem;
+                }
+                p{
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        @include responsive(md){
+            margin-bottom: 6rem;
+            grid-template-columns: repeat(1, 1fr);
+            li{
+                i{
+                    padding-bottom: 2rem;
+                    margin-bottom: 2rem;
+                }
+                strong{
+                    font-size: 1.5rem;
+                }
+                p{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+.esg-strategy{
+    text-align: center;
+    background-image: url('@/assets/images/esg/strategy-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 12rem;
+    .page--title{
+        color:#fff;
+    }
+    .esg--ti__txt{
+        color:#fff;
+    }
+    .strategy--txt{
+        display: block;
+        font-size: 5.2rem;
+        color:#fff;
+        margin-bottom: 8rem;
+    }
+    .circle--ti{
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+        color:#fff;
+    }
+    @include responsive(lg){
+        .strategy--txt{
+            font-size: 4.2rem;
+            margin-bottom: 6rem;
+        }
+        .circle--ti{
+            font-size: 2rem;
+            font-size: 1.5rem;
+        }
+    }
+    @include responsive(lg){
+        .strategy--txt{
+            font-size: 3.2rem;
+            margin-bottom: 4rem;
+        }
+        .circle--ti{
+            font-size: 2rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.target--circle{
+    background: rgba(255,255,255,0.4);
+    border-radius:18rem;
+    margin: auto;
+    display: inline-flex;
+    gap:3rem;
+    padding: 3rem;
+    margin-bottom: 5rem;
+    li{
+        position: relative;
+        width: 29.5rem;
+        height: 29.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        border-radius: 50%;
+        background-color: #fff;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 2rem;
+        margin: 2rem;
+        &::after{
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            content:'';
+            border: 2rem solid rgba(255,255,255,0.4);
+        }
+        span{
+            display: block;
+            font-size: 1.7rem;
+            color:#077bb6;
+        }
+        p{
+            font-size: 2.5rem;
+            color:#000000;
+        }
+    }
+    @include responsive(xl){
+        li{
+            position: relative;
+            width: 24rem;
+            height: 24rem;
+        }
+    }
+    @include responsive(lg){
+        gap:2rem;
+        li{
+            width: 20rem;
+            height: 20rem;
+            gap:2rem;
+            span{
+                font-size: 1.3rem;
+            }
+            p{
+                font-size: 2rem;
+            }
+        }
+    }
+    @include responsive(md){
+        display: flex;
+        flex-direction: column;
+        border-radius: 1.8rem;
+        li{
+            width: 100%;
+            height: auto;
+            border-radius: 1.8rem;
+            margin: 0;
+            span{
+                font-size: 1.3rem;
+            }
+            p{
+                font-size: 1.5rem;
+            }
+            &::after{
+                display: none;
+            }
+        }
+    }
+}
+
+.plan--circle{
+    background-image: url('@/assets/images/esg/plan-bd.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius:18rem;
+    margin: auto;
+    display: inline-flex;
+    gap:3rem;
+    padding: 3rem;
+    li{
+        position: relative;
+        width: 31.5rem;
+        height: 31.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,0.9);
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 2rem;
+        span{
+            display: block;
+            font-size: 1.7rem;
+            color:#077bb6;
+        }
+        p{
+            font-size: 2.5rem;
+            color:#000000;
+        }
+    }
+    @include responsive(xl){
+        li{
+            position: relative;
+            width: 24rem;
+            height: 24rem;
+        }
+    }
+    @include responsive(lg){
+        gap:1;
+        background-image: none;
+        padding: 0;
+        li{
+            position: relative;
+            width: 15rem;
+            height: 15rem;
+            padding: 1rem;
+            gap:1rem;
+            span{
+                font-size: 1.3rem;
+            }
+            p{
+                font-size: 1.6rem;
+            }
+        }
+    }
+    @include responsive(md){
+        display: flex;
+        flex-direction: column;
+        border-radius: 1.8rem;
+        li{
+            width: 100%;
+            height: auto;
+            border-radius: 1.8rem;
+            margin: 0;
+            span{
+                font-size: 1.3rem;
+            }
+            p{
+                font-size: 1.5rem;
+            }
+            &::after{
+                display: none;
             }
         }
     }

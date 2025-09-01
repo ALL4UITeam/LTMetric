@@ -13,26 +13,40 @@
     }
 }
 .sr-only {display: none;}
-
+.md-show {
+    @include responsive(md){
+        display: none;
+    }
+}
 .intro--banner{
     height: 100vh;
     background-color: transparent;
     background-position: center;
     background-size: 100% 100%;
     &.board{
-        background-image: url("@/assets/images/press_visual.png");
+        .intro--banner-background{
+            background-image: url("@/assets/images/press_visual.png");
+        }
     }
     &.company{
-        background-image: url("@/assets/images/company_visual.png");
+        .intro--banner-background{
+            background-image: url("@/assets/images/company_visual.png");
+        }
     }
     &.recruitment{
-        background-image: url("@/assets/images/recruitment_visual.png");
+        .intro--banner-background{
+            background-image: url("@/assets/images/recruitment_visual.png");
+        }
     }
     &.recruitboard{
-        background-image: url("@/assets/images/recruitboard_visual.png");
+        .intro--banner-background{
+            background-image: url("@/assets/images/recruitboard_visual.png");
+        }
     }
     &.esg{
-        background-image: url("@/assets/images/esg_visual.png");
+        .intro--banner-background{
+            background-image: url("@/assets/images/esg_visual.png");
+        }
     }
     @include responsive(lg){
         background-size: cover;
@@ -167,4 +181,3 @@
         padding: 6rem 0;
     }
 }
-

@@ -1946,7 +1946,6 @@ body:has(.modal.active) #all4land {
   height: 100%;
   z-index: 100015;
   display: none;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
