@@ -4324,6 +4324,8 @@ body:has(.modal.active) #all4land {
   background-image: url("../images/recruit-bg.png");
   padding: 8rem 0 10rem;
   margin-top: 12rem;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .recruit--talent h3 {
   color: #fff;
