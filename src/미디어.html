@@ -12,6 +12,7 @@
         <div data-current="board" data-layout="sub">
 
             <div class="intro--banner board">
+                <div class="intro--banner-background"></div>
                 <div class="intro--banner_point">
                     <div class="intro--banner_title">
                         <div class="container">
@@ -84,7 +85,7 @@
                 <div class="board--total">총 게시글 <b>16</b>건</div>
                 <div class="board--gall">
                     <div class="board--gall__item">
-                        <a href="#">
+                        <a href="#" class="video-open" data-url="gSNv_T21m5s" data-title="인도네시아 홍수 예측 및 경보 시스템" data-cont="&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;인도네시아 홍수 예측 및 경보 시스템&lt;/span&gt;&lt;/p&gt;">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/sample/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -167,28 +168,70 @@
         <!-- e: contents -->
     </div>
     {{> footer}}
+    <div id="PlayerModal">
+		<div class="player-content">
+			<header>
+				<h2 class="video-title">올포랜드 창립 19주년 기념영상</h2>
+				<button class="close">
+					<span></span>
+				</button>
+			</header>
+			<div class="line-box"><div class="iframe-zone"></div></div>
+			<div class="video-con"></div>
+		</div>
+		<div class="black-bg"></div>
+	</div>
+
     <script>
-        document.getElementById('promotionPlay').addEventListener('click', function() {
-            // iframe 요소 생성
-            var iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube.com/embed/y5aVxTpP_8w?autoplay=1';
-            iframe.title = '엘티메트릭, 라이카 컨트리맵퍼 항공 측량 시스템 구매…아태 지역 최초';
-            iframe.frameBorder = '0';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-            iframe.allowFullscreen = true;
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('PlayerModal');
+            const iframeZone = modal.querySelector('.iframe-zone');
+            const closeBtn = modal.querySelector('.close');
+            const blackBg = modal.querySelector('.black-bg');
+            const titl = modal.querySelector('.video-title');
+            const pcon = modal.querySelector('.video-con');
 
-            // iframe 로딩 완료 이벤트 핸들러
-            iframe.onload = function() {
-                console.log('로드 완료');
-                document.querySelector('.promotion__visual--player').classList.add('play')
+
+            // 동영상 재생 버튼 이벤트
+            document.querySelectorAll('.video-open').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    // data-url 속성에서 유튜브 링크 가져오기
+                    const videoUrl = button.getAttribute('data-url');
+                    const videoTitle = button.getAttribute('data-title');
+                    const videoCont = button.getAttribute('data-cont');
+                    //https://youtu.be/Z5aB0PZyqWM?t=127
+                    // iframe 동적 생성
+                    const iframe = document.createElement('iframe');
+                    iframe.src = "https://www.youtube.com/embed/"+videoUrl+"?autoplay=1";
+                    //iframe.src = 'ladsU5af7Ys?autoplay=1';
+                    iframe.title = videoTitle;
+                    iframe.frameBorder = '0';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                    iframe.allowFullscreen = true;
+
+                    // iframe 삽입
+                    iframeZone.innerHTML = ''; // 기존 내용 초기화
+                    iframeZone.appendChild(iframe);
+                    titl.innerText = videoTitle;
+                    pcon.innerHTML = videoCont;
+
+                    // 모달 열기
+                    modal.style.display = 'flex';
+                });
+            });
+            // 닫기 버튼과 배경 클릭 이벤트
+            const closeModal = () => {
+                modal.style.display = 'none';
+                iframeZone.innerHTML = ''; // iframe 제거
+                videoTitle.innerText = '';
             };
-
-            // iframe을 원하는 위치에 삽입
-            var container = document.querySelector('.promotion__visual--player');
-            container.innerHTML = ''; // 기존 내용을 지우고
-            container.appendChild(iframe); // iframe 삽입
+            closeBtn.addEventListener('click', closeModal);
+            blackBg.addEventListener('click', closeModal);
         });
+
     </script>
 
     <script type="module" src="/js/main.js"></script>
