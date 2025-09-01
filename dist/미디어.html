@@ -198,6 +198,7 @@
         <div data-current="board" data-layout="sub">
 
             <div class="intro--banner board">
+                <div class="intro--banner-background"></div>
                 <div class="intro--banner_point">
                     <div class="intro--banner_title">
                         <div class="container">
@@ -270,7 +271,7 @@
                 <div class="board--total">총 게시글 <b>16</b>건</div>
                 <div class="board--gall">
                     <div class="board--gall__item">
-                        <a href="#">
+                        <a href="#" class="video-open" data-url="gSNv_T21m5s" data-title="인도네시아 홍수 예측 및 경보 시스템" data-cont="&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;인도네시아 홍수 예측 및 경보 시스템&lt;/span&gt;&lt;/p&gt;">
                             <div class="board--gall__thumb">
                                 <img src="./assets/images/thumb_450x254.png" alt="게시판 썸네일">
                             </div>
@@ -438,28 +439,122 @@
     <button type="button" id="btnTop" title="맨 위로"><i></i></button>
     
     
-    <script src="./js/modal.js"></script>    <script>
+    <script src="./js/modal.js"></script>
+    
+    <script>
+        if(document.querySelector('.page_title')){
+            const pageMainTitle = document.querySelector('.page_title');
+            const pageSubDesc = document.querySelector('.sub_title_desc');
+    
+            // 글자 span으로 감싸기
+            const text = pageMainTitle.textContent.trim();
+            pageMainTitle.textContent = ''; // 기존 텍스트 비움
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.display = 'inline-block';
+                span.style.transform = 'translateY(100%)'; // 초기 아래 위치
+                pageMainTitle.appendChild(span);
+            });
+    
+            // GSAP 타이틀 애니메이션
+            gsap.to(".page_title span", {
+                y: 0,
+                duration: 1.3,
+                stagger: 0.09,
+                ease: "power3.out",
+                onComplete: () => {
+                gsap.fromTo(pageSubDesc,
+                    { y: 0, opacity: 0, filter: "blur(10px)" },
+                    { y: 0, opacity: 1, duration: 1, ease: "power3.out", filter: "blur(0px)" }
+                );
+                }
+            });
+            gsap.fromTo(".intro--banner-background",
+                { clipPath: "circle(0% at 50% 50%)" },
+                { clipPath: "circle(150% at 50% 50%)", duration: 10, ease: "power3.out" }
+            );
+        }
+    </script>    <div id="PlayerModal">
+		<div class="player-content">
+			<header>
+				<h2 class="video-title">올포랜드 창립 19주년 기념영상</h2>
+				<button class="close">
+					<span></span>
+				</button>
+			</header>
+			<div class="line-box"><div class="iframe-zone"></div></div>
+			<div class="video-con"></div>
+		</div>
+		<div class="black-bg"></div>
+	</div>
+
+    <script>
         document.getElementById('promotionPlay').addEventListener('click', function() {
-            // iframe 요소 생성
-            var iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube.com/embed/y5aVxTpP_8w?autoplay=1';
-            iframe.title = '엘티메트릭, 라이카 컨트리맵퍼 항공 측량 시스템 구매…아태 지역 최초';
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/_vfWLaZKiRw?autoplay=1';
+            iframe.title = $('#thmbDtoTtl').val();
             iframe.frameBorder = '0';
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
             iframe.referrerPolicy = 'strict-origin-when-cross-origin';
             iframe.allowFullscreen = true;
-
-            // iframe 로딩 완료 이벤트 핸들러
             iframe.onload = function() {
-                console.log('로드 완료');
                 document.querySelector('.promotion__visual--player').classList.add('play')
             };
-
-            // iframe을 원하는 위치에 삽입
             var container = document.querySelector('.promotion__visual--player');
-            container.innerHTML = ''; // 기존 내용을 지우고
-            container.appendChild(iframe); // iframe 삽입
+            container.innerHTML = '';
+            container.appendChild(iframe);
+            this.classList.add('play');
         });
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('PlayerModal');
+            const iframeZone = modal.querySelector('.iframe-zone');
+            const closeBtn = modal.querySelector('.close');
+            const blackBg = modal.querySelector('.black-bg');
+            const titl = modal.querySelector('.video-title');
+            const pcon = modal.querySelector('.video-con');
+
+
+            // 동영상 재생 버튼 이벤트
+            document.querySelectorAll('.video-open').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    // data-url 속성에서 유튜브 링크 가져오기
+                    const videoUrl = button.getAttribute('data-url');
+                    const videoTitle = button.getAttribute('data-title');
+                    const videoCont = button.getAttribute('data-cont');
+                    //https://youtu.be/Z5aB0PZyqWM?t=127
+                    // iframe 동적 생성
+                    const iframe = document.createElement('iframe');
+                    iframe.src = "https://www.youtube.com/embed/"+videoUrl+"?autoplay=1";
+                    //iframe.src = 'ladsU5af7Ys?autoplay=1';
+                    iframe.title = videoTitle;
+                    iframe.frameBorder = '0';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                    iframe.allowFullscreen = true;
+
+                    // iframe 삽입
+                    iframeZone.innerHTML = ''; // 기존 내용 초기화
+                    iframeZone.appendChild(iframe);
+                    titl.innerText = videoTitle;
+                    pcon.innerHTML = videoCont;
+
+                    // 모달 열기
+                    modal.style.display = 'flex';
+                });
+            });
+            // 닫기 버튼과 배경 클릭 이벤트
+            const closeModal = () => {
+                modal.style.display = 'none';
+                iframeZone.innerHTML = ''; // iframe 제거
+                videoTitle.innerText = '';
+            };
+            closeBtn.addEventListener('click', closeModal);
+            blackBg.addEventListener('click', closeModal);
+        });
+
     </script>
 
 </body></html>
