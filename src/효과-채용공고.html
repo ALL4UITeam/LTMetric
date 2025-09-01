@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {{> meta}}
+</head>
+<body>
+    <div id="LT" class="wrap LT">
+        {{> header}}
+        {{> headerBanner}}
+        {{> mobilenav}}
+        <!-- s: contents -->
+        <div data-current="recruit" data-layout="sub" class="recruitboard">
+
+            <div class="intro--banner recruitboard">
+                <div class="intro--banner-background" style="background: url(./assets/images/recruitboard_visual.png) no-repeat center center / cover;"></div>
+                <div class="intro--banner_point">
+                    <div class="intro--banner_title">
+                        <div class="container">
+                            <h2 class="page_title">Recruit</h2>
+                            <p class="sub_title_desc">사람과 공간 정보, 신기술을 보다 쉽게 연결하고 새로운 가치를 더하는 기업</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro--depth">
+                    <div class="container">
+                        <ul>
+                            <li><a href="">인사제도</a></li>
+                            <li><a class="active" href="">채용공고</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h2 class="page--title">채용공고</h2>
+            <div class="recruit--txt">
+                탄력적 상시채용 제도 운용을 통해 꿈과 열정이 있는 인재를 기다립니다
+            </div>
+            <div class="recruit--status">
+                <div class="container">
+                    <h4>진행중인 채용공고</h4>
+                    <div class="recruit--status__wrap">
+                        <dl class="recruit--status__item">
+                            <dt>전체</dt>
+                            <dd>
+                                <strong>6</strong>
+                                <span>건</span>
+                            </dd>
+                        </dl>
+                        <dl class="recruit--status__item">
+                            <dt>신입</dt>
+                            <dd>
+                                <strong>6</strong>
+                                <span>건</span>
+                            </dd>
+                        </dl>
+                        <dl class="recruit--status__item">
+                            <dt>경력</dt>
+                            <dd>
+                                <strong>6</strong>
+                                <span>건</span>
+                            </dd>
+                        </dl>
+                        <dl class="recruit--status__item">
+                            <dt>인턴</dt>
+                            <dd>
+                                <strong>6</strong>
+                                <span>건</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="board--list container">
+                <div class="board--total">총 게시글 <b>16</b>건</div>
+                <div class="board--recruit">
+                    <div class="board--recruit__item">
+                        <a href="">
+                            <div class="board--recruit__cate">개발 · 경력</div>
+                            <div class="board--recruit__title">2025년 엘티메트릭 개발 직군 상시 채용</div>
+                            <div class="board--recruit__date"><span>상시</span></div>
+                        </a>
+                    </div>
+                    <div class="board--recruit__item">
+                        <a href="">
+                            <div class="board--recruit__cate">개발 · 신입</div>
+                            <div class="board--recruit__title">2025년 엘티메트릭 개발 직군 상시 채용</div>
+                            <div class="board--recruit__date"><span>2025.05.15</span></div>
+                        </a>
+                    </div>
+                    <div class="board--recruit__item">
+                        <a href="">
+                            <div class="board--recruit__cate">영업 · 신입</div>
+                            <div class="board--recruit__title">2025년 엘티메트릭 개발 직군 상시 채용</div>
+                            <div class="board--recruit__date"><span>상시</span></div>
+                        </a>
+                    </div>
+                    <div class="board--recruit__item">
+                        <a href="">
+                            <div class="board--recruit__cate">영업 · 신입</div>
+                            <div class="board--recruit__title">2025년 엘티메트릭 개발 직군 상시 채용</div>
+                            <div class="board--recruit__date"><span>상시</span></div>
+                        </a>
+                    </div>
+                    <div class="board--recruit__item">
+                        <a href="">
+                            <div class="board--recruit__cate">DB · 신입</div>
+                            <div class="board--recruit__title">2025년 엘티메트릭 개발 직군 상시 채용</div>
+                            <div class="board--recruit__date"><span>상시</span></div>
+                        </a>
+                    </div>
+                    <div class="board--recruit__item">
+                        <a href="">
+                            <div class="board--recruit__cate">영업 · 경력</div>
+                            <div class="board--recruit__title">2025년 엘티메트릭 개발 직군 상시 채용</div>
+                            <div class="board--recruit__date"><span>상시</span></div>
+                        </a>
+                    </div>
+                </div>
+                <!-- e: board-recruit -->
+
+                <!-- s: paging -->
+                {{> paging}}
+                <!-- e: paging -->
+            </div>
+            <!-- e: board -->
+        </div>
+        <!-- e: contents -->
+    </div>
+    
+    {{> footer}}
+
+    <script type="module" src="/js/main.js"></script>
+
+
+</body></html>
