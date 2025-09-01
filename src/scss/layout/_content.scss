@@ -8,6 +8,9 @@
     @include responsive(lg){
         padding-bottom: 15rem;
     }
+    &.p-n{
+        padding-bottom: 0;
+    }
 }
 .sr-only {display: none;}
 
@@ -15,7 +18,7 @@
     height: 100vh;
     background-color: transparent;
     background-position: center;
-    background-size: cover;
+    background-size: 100% 100%;
     &.board{
         background-image: url("@/assets/images/press_visual.png");
     }
@@ -27,6 +30,12 @@
     }
     &.recruitboard{
         background-image: url("@/assets/images/recruitboard_visual.png");
+    }
+    &.esg{
+        background-image: url("@/assets/images/esg_visual.png");
+    }
+    @include responsive(lg){
+        background-size: cover;
     }
     &_title{
         position: fixed;
