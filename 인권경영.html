@@ -222,7 +222,7 @@
     
             <h2 class="page--title">인권 경영</h2>
             <div class="container">
-                <p class="esg--ti__txt">인간의 존엄과 가치를 중시하는 인권경영을 실천합니다</p>
+                <p class="esg--ti__txt animate-text">인간의 존엄과 가치를 중시하는 인권경영을 실천합니다</p>
             </div>
             <div class="human--process">
                 <div class="container">
@@ -259,24 +259,24 @@
             </div>
             <div class="container">
                 <div class="human--txt">
-                    <div class="human--txt__item">
-                        <span>01</span>
-                        <strong>인권교육</strong>
-                        <p>
+                    <div class="human--txt__item animate-item">
+                        <span class="animate-text">01</span>
+                        <strong class="animate-text">인권교육</strong>
+                        <p class="animate-text">
                             임직원의 인권 의식제고와 인권 존중 실천을 위해 매년<br class="md-show" >전체 임직원을 대상으로 직장 내 괴롭힘 방지, 장애인 인식 개선 등의 인권 교육을 실시합니다.
                         </p>
                     </div>
-                    <div class="human--txt__item">
-                        <span>02</span>
-                        <strong>다양성 존중</strong>
-                        <p>
+                    <div class="human--txt__item animate-item">
+                        <span class="animate-text">02</span>
+                        <strong class="animate-text">다양성 존중</strong>
+                        <p class="animate-text">
                             구성원의 다양성을 존중하며 성별, 인종, 국적, 종교, 나이, 장애<br class="md-show"> 어떠한 이유로도 임직원을 차별하지 않습니다.
                         </p>
                     </div>
-                    <div class="human--txt__item">
-                        <span>03</span>
-                        <strong>안전한 근무환경 조성</strong>
-                        <p>
+                    <div class="human--txt__item animate-item">
+                        <span class="animate-text">03</span>
+                        <strong class="animate-text">안전한 근무환경 조성</strong>
+                        <p class="animate-text">
                             안전보건 전담인력을 통해 안전보건 교육을 실시하고 안전보건 관리규정 준수 여부 및<br class="md-show"> 사업장 안전관리 진단을 시행하며 안전한 근무환경을 조성하기 위해 노력하고 있습니다.
                         </p>
                     </div>
@@ -397,4 +397,108 @@
             );
         }
     </script>
+    
+    <!-- GSAP 애니메이션 스크립트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            gsap.set('.animate-text', { 
+                opacity: 0, 
+                y: 50
+            });
+            
+            gsap.set('.animate-item', { 
+                opacity: 0, 
+                y: 30
+            });
+            
+            gsap.to('.esg--ti__txt', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.esg--ti__txt',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.human--process h4', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.human--process',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.human--process__wrap .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.human--process__wrap',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.human--process__item', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.3,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.human--process__wrap',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.human--txt__item .animate-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.human--txt',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.to('.human--txt__item', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.4,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.human--txt',
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+        });
+    </script>
 </body></html>
