@@ -987,7 +987,7 @@ body:has(header.hide) #btnTop {
 .intro--banner .intro--depth ul li a:after {
   content: "";
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 0;
   transition: all 0.3s;
   width: 0;
@@ -998,18 +998,25 @@ body:has(header.hide) #btnTop {
   color: #fff;
 }
 .intro--banner .intro--depth ul li a.active:after {
+  left: 0;
+  right: 0;
   width: 100%;
 }
 .intro--banner .intro--depth ul li a:hover:not(.active) {
   color: #fff;
 }
 .intro--banner .intro--depth ul li a:hover:not(.active):after {
+  left: 0;
+  right: 100%;
   width: 100%;
 }
 .intro--banner .intro--depth ul:hover a.active:after {
   width: 0;
+  left: 50%;
 }
 .intro--banner .intro--depth ul li a.active:hover:after {
+  left: 0;
+  right: 100%;
   width: 100%;
 }
 
@@ -4324,6 +4331,8 @@ body:has(.modal.active) #all4land {
   background-image: url("../images/recruit-bg.png");
   padding: 8rem 0 10rem;
   margin-top: 12rem;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .recruit--talent h3 {
   color: #fff;
