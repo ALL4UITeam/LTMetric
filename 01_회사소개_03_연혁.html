@@ -474,45 +474,8 @@
     
     
     <script src="./js/modal.js"></script>
-    
     <script>
-        if(document.querySelector('.page_title')){
-            const pageMainTitle = document.querySelector('.page_title');
-            const pageSubDesc = document.querySelector('.sub_title_desc');
-    
-            // 글자 span으로 감싸기
-            const text = pageMainTitle.textContent.trim();
-            pageMainTitle.textContent = ''; // 기존 텍스트 비움
-            text.split('').forEach(char => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                span.style.display = 'inline-block';
-                span.style.transform = 'translateY(100%)'; // 초기 아래 위치
-                pageMainTitle.appendChild(span);
-            });
-    
-            // GSAP 타이틀 애니메이션
-            gsap.to(".page_title span", {
-                y: 0,
-                duration: 1.3,
-                stagger: 0.09,
-                ease: "power3.out",
-                onComplete: () => {
-                gsap.fromTo(pageSubDesc,
-                    { y: 0, opacity: 0, filter: "blur(10px)" },
-                    { y: 0, opacity: 1, duration: 1, ease: "power3.out", filter: "blur(0px)" }
-                );
-                }
-            });
-            gsap.fromTo(".intro--banner-background",
-                { clipPath: "circle(0% at 50% 50%)" },
-                { clipPath: "circle(100% at 50% 50%)", duration: 1.3, ease: "power3.out" }
-            );
-        }
-    </script>    <script>
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-
 
         const historyContent = document.querySelector('.history__content');
         const historyMnHeader = document.querySelector('.header').offsetHeight;
@@ -521,32 +484,27 @@
         // Select all tab buttons
         const tabButtons = document.querySelectorAll('.history__tabs button');
 
-
         // Add click event listener to each button
         tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Get the target ID from the data-target attribute
-            const targetId = this.getAttribute('data-target');
-            const targetElement = document.getElementById(targetId);
+            button.addEventListener('click', function() {
+                // Get the target ID from the data-target attribute
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
 
-            tabButtons.forEach(btn => btn.classList.remove('_selected'));
-            // Add _selected class to the clicked button
-            this.classList.add('_selected');
+                tabButtons.forEach(btn => btn.classList.remove('_selected'));
+                // Add _selected class to the clicked button
+                this.classList.add('_selected');
 
-            // Scroll to the target element using GSAP
-            gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: targetElement,
-                autoKill: true
-            }
+                // Scroll to the target element using GSAP
+                gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: targetElement,
+                    autoKill: true
+                }
+                });
             });
         });
-        });
-
-
-
-        
 
         let historyTimeline = gsap.timeline({
             scrollTrigger: {
@@ -585,6 +543,6 @@
             
             ScrollTrigger.refresh();
         });
-    </script>
-
+    </script>
+    <script src="/js/sub.js"></script>
 </body></html>
