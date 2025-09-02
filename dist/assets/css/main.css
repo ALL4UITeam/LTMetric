@@ -1346,7 +1346,7 @@ body:has(header.hide) #btnTop {
   height: 100vh; /* 배경 풀사이즈 */
   clip-path: circle(0% at 50% 50%);
   background-repeat: no-repeat;
-  background: 50% 50%;
+  background: 100% 100%;
   background-size: cover;
 }
 

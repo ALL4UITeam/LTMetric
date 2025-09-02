@@ -218,8 +218,6 @@
     <script>
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-
-
         const historyContent = document.querySelector('.history__content');
         const historyMnHeader = document.querySelector('.header').offsetHeight;
         const progressIndicator = document.querySelector('.progress-indicator');
@@ -227,32 +225,27 @@
         // Select all tab buttons
         const tabButtons = document.querySelectorAll('.history__tabs button');
 
-
         // Add click event listener to each button
         tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Get the target ID from the data-target attribute
-            const targetId = this.getAttribute('data-target');
-            const targetElement = document.getElementById(targetId);
+            button.addEventListener('click', function() {
+                // Get the target ID from the data-target attribute
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
 
-            tabButtons.forEach(btn => btn.classList.remove('_selected'));
-            // Add _selected class to the clicked button
-            this.classList.add('_selected');
+                tabButtons.forEach(btn => btn.classList.remove('_selected'));
+                // Add _selected class to the clicked button
+                this.classList.add('_selected');
 
-            // Scroll to the target element using GSAP
-            gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: targetElement,
-                autoKill: true
-            }
+                // Scroll to the target element using GSAP
+                gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: targetElement,
+                    autoKill: true
+                }
+                });
             });
         });
-        });
-
-
-
-        
 
         let historyTimeline = gsap.timeline({
             scrollTrigger: {
@@ -292,6 +285,6 @@
             ScrollTrigger.refresh();
         });
     </script>
-
     <script type="module" src="/js/main.js"></script>
+    <script src="/js/sub.js"></script>
 </body></html>
